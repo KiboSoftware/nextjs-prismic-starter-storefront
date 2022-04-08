@@ -11,7 +11,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import TopBar from '../components/TopBar'
 import createEmotionCache from '../lib/createEmotionCache'
 import theme from '../styles/theme'
-
+import { PageElementsProvider } from '@/components/webiny/PageElementProvider'
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
 
@@ -34,8 +34,10 @@ const App = (props: KiboAppProps) => {
         <CssBaseline />
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
-            <TopBar />
-            <Component {...pageProps} />
+            <PageElementsProvider>
+              <TopBar />
+              <Component {...pageProps} />
+            </PageElementsProvider>
           </Hydrate>
         </QueryClientProvider>
       </ThemeProvider>
