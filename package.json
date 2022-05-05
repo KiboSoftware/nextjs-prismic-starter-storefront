@@ -17,6 +17,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@craftjs/core": "^0.2.0-beta.3",
     "@emotion/react": "^11.7.0",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.6.0",
@@ -25,9 +26,11 @@
     "@kibocommerce/graphql-client": "^1.0.3-beta.9",
     "@mui/icons-material": "^5.4.4",
     "@mui/material": "^5.2.2",
+    "material-ui-color": "^1.2.0",
     "next": "12.0.4",
     "next-i18next": "^10.2.0",
     "react": "17.0.2",
+    "react-contenteditable": "^3.3.6",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.28.1",
     "react-query": "^3.34.0",

@@ -20,6 +20,7 @@ export default function TopBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Logo
           </Typography>
+          <Link href="/craft">Craft</Link>
           <Link href="/search">Search</Link>
           <Button color="inherit">Login</Button>
         </Toolbar>
