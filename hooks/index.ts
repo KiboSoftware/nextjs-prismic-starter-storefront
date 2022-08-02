@@ -24,6 +24,8 @@ export * from './mutations/useUpdateCheckout/useUpdateCheckoutShippingInfo/useUp
 export * from './mutations/useUser/useUserMutations'
 export * from './mutations/useUser/useUserAccountRegistrationMutations'
 export * from './mutations/useCartMutation/useCartMutation'
+export * from './mutations/useUpdateCartMutation/useUpdateCartItemQuantityMutation'
+export * from './mutations/useUpdateCartMutation/useRemoveCartItemMutation'
 
 export * from './mutations/useProductMutation/useProductMutation'
 

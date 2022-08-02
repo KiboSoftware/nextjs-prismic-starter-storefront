@@ -15,7 +15,12 @@ import { useRouter } from 'next/router'
 
 import { CartItemList } from '@/components/cart'
 import { PromoCodeBadge, OrderSummary } from '@/components/common'
-import { useCartQueries, useCreateFromCartMutation, useCartMutation } from '@/hooks'
+import {
+  useCartQueries,
+  useCreateFromCartMutation,
+  useUpdateCartItemQuantityMutation,
+  useRemoveCartItemMutation,
+} from '@/hooks'
 import { checkoutGetters } from '@/lib/getters'
 
 import type { Cart } from '@/lib/gql/types'
@@ -49,7 +54,8 @@ const CartTemplate = (props: CartTemplateProps) => {
   const isMobileViewport = useMediaQuery(theme.breakpoints.down('md'))
   const router = useRouter()
   const { createFromCart } = useCreateFromCartMutation()
-  const { updateCartItemQuantity, removeCartItem } = useCartMutation()
+  const removeCartItem = useRemoveCartItemMutation()
+  const updateCartItemQuantity = useUpdateCartItemQuantityMutation()
 
   const cartItemCount = checkoutGetters.getCartItemCount(cart)
   const cartItems = checkoutGetters.getCartItems(cart)

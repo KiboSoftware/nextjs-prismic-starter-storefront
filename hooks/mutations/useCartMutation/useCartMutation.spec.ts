@@ -44,35 +44,4 @@ describe('[hooks] useCartMutation', () => {
       }
     )
   })
-
-  it('should use useCartMutation when updateCartItemQuantity', async () => {
-    renderHook(
-      async () => {
-        const { updateCartItemQuantity } = useCartMutation()
-        const response = await updateCartItemQuantity.mutateAsync({
-          cartItemId: 'fjsdhfjsdh53472bkjsdffdf',
-          quantity: 2,
-        })
-        expect(response).toStrictEqual(cartItemMock)
-      },
-      {
-        wrapper: createQueryClientWrapper(),
-      }
-    )
-  })
-
-  it('should use useCartMutation when removeCartItem', async () => {
-    renderHook(
-      async () => {
-        const { removeCartItem } = useCartMutation()
-        const response = await removeCartItem.mutateAsync({
-          cartItemId: 'fjsdhfjsdh53472bkjsdffdf',
-        })
-        expect(response).toEqual(true)
-      },
-      {
-        wrapper: createQueryClientWrapper(),
-      }
-    )
-  })
 })
