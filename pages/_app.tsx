@@ -1,43 +1,89 @@
-import * as React from 'react'
-import Head from 'next/head'
-import { AppProps } from 'next/app'
-import { ThemeProvider } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
+import React, { useState } from 'react'
+
 import { CacheProvider, EmotionCache } from '@emotion/react'
-import theme from '../styles/theme'
+import CssBaseline from '@mui/material/CssBaseline'
+import { ThemeProvider } from '@mui/material/styles'
+import { appWithTranslation } from 'next-i18next'
+import { AppProps } from 'next/app'
+import Head from 'next/head'
+import 'next-i18next.config'
+import Router from 'next/router'
+import NProgress from 'nprogress'
+import { Hydrate, QueryClientProvider } from 'react-query'
+import '../styles/nprogress.css'
+
 import createEmotionCache from '../lib/createEmotionCache'
-import TopBar from '../components/TopBar'
-import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
+import { generateQueryClient } from '../lib/react-query/queryClient'
+import theme from '../styles/theme'
+import { GlobalFetchingIndicator } from '@/components/common'
+import { KiboHeader, DefaultLayout, Footer } from '@/components/layout'
+import { AuthContextProvider, ModalContextProvider, DialogRoot } from '@/context'
+import { footerConfig as footerProps } from '@/lib/constants'
+import type { NextPageWithLayout } from '@/lib/types'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
 
-interface MyAppProps extends AppProps {
+type KiboAppProps = AppProps & {
   emotionCache?: EmotionCache
+  Component: NextPageWithLayout
 }
 
-const App = (props: MyAppProps) => {
+NProgress.configure({ showSpinner: false })
+Router.events.on('routeChangeStart', () => NProgress.start())
+Router.events.on('routeChangeComplete', () => NProgress.done())
+Router.events.on('routeChangeError', () => NProgress.done())
+
+const App = (props: KiboAppProps) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
-  const [queryClient] = React.useState(() => new QueryClient())
+  const [queryClient] = useState(() => generateQueryClient())
+  const getLayout = Component.getLayout ?? ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>Title</title>
+        <title>Kibo Commerce - NextJS</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <QueryClientProvider client={queryClient}>
-          <Hydrate state={pageProps.dehydratedState}>
-            <TopBar />
-            <Component {...pageProps} />
-          </Hydrate>
+          <ModalContextProvider>
+            <AuthContextProvider>
+              <Hydrate state={pageProps.dehydratedState}>
+                <GlobalFetchingIndicator />
+                <KiboHeader
+                  navLinks={[
+                    {
+                      link: '/order-status',
+                      text: 'order-status',
+                    },
+                    {
+                      link: '/wishlist',
+                      text: 'wishlist',
+                    },
+                    {
+                      link: '#',
+                      text: 'Nav Link 2',
+                    },
+                    {
+                      link: '#',
+                      text: 'Nav Link 3',
+                    },
+                  ]}
+                  categoriesTree={pageProps.categoriesTree || []}
+                  sticky={true}
+                />
+                <DialogRoot />
+                {getLayout(<Component {...pageProps} />)}
+                <Footer {...footerProps} />
+              </Hydrate>
+            </AuthContextProvider>
+          </ModalContextProvider>
         </QueryClientProvider>
       </ThemeProvider>
     </CacheProvider>
   )
 }
-
-export default App
+export default appWithTranslation<KiboAppProps>(App)

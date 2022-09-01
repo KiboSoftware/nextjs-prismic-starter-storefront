@@ -1,21 +1,23 @@
 import { searchResults } from '@/lib/gql/fragments'
 
-export const searchProductsQuery = /* GraphQL */ `
+const searchProductsQuery = /* GraphQL */ `
   query ProductSearch(
     $query: String
     $startIndex: Int
+    $filter: String
     $pageSize: Int
     $sortBy: String
-    $filter: String
+    $facetHierValue: String
     $facetTemplate: String
     $facetValueFilter: String
   ) {
     products: productSearch(
       query: $query
+      filter: $filter
       startIndex: $startIndex
       pageSize: $pageSize
       sortBy: $sortBy
-      filter: $filter
+      facetHierValue: $facetHierValue
       facetTemplate: $facetTemplate
       facetValueFilter: $facetValueFilter
     ) {
@@ -24,3 +26,5 @@ export const searchProductsQuery = /* GraphQL */ `
   }
   ${searchResults}
 `
+
+export default searchProductsQuery

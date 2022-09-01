@@ -10,8 +10,12 @@ module.exports = {
     ;[].push.apply(config.resolve.plugins, [
       new TsconfigPathsPlugin({ extensions: config.resolve.extensions }),
     ])
-
+    console.log(config.module.rules[12])
     config.resolve.alias['@emotion/styled'] = resolve('../node_modules/@emotion/styled')
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'next-i18next': 'react-i18next',
+    }
     return config
   },
   stories: ['../components/**/*.stories.mdx', '../components/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -20,7 +24,8 @@ module.exports = {
     '@storybook/addon-essentials',
     'storybook-addon-material-ui5',
     '@storybook/addon-docs',
-    'storybook-addon-next',
+    '@storybook/addon-a11y',
+    'storybook-addon-next-router',
   ],
   framework: '@storybook/react',
 }

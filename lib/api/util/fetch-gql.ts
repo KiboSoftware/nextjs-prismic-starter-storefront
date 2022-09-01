@@ -1,15 +1,17 @@
 import vercelFetch from '@vercel/fetch'
+
+import { apiAuthClient } from './api-auth-client'
+import { getGraphqlUrl } from './config-helpers'
+
 const fetch = vercelFetch()
-const graphUrl = `https://${process.env.KIBO_API_HOST}/graphql`
-const authHost = `https://${process.env.KIBO_AUTH_HOST}`
 
-const testToken = process.env.TEST_API_TOKEN
-
-const fetcher = async ({ query, variables }: any) => {
-  const response = await fetch(graphUrl, {
+const fetcher = async ({ query, variables }: any, options: any) => {
+  const authToken = await apiAuthClient.getAccessToken()
+  const response = await fetch(getGraphqlUrl(), {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${testToken}`,
+      Authorization: `Bearer ${authToken}`,
+      'x-vol-user-claims': options?.userClaims,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({

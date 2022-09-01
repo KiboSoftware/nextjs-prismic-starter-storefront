@@ -1,59 +1,164 @@
-import React from 'react'
-import { Card, Box } from '@mui/material'
-import FlexBox from '@/components/FlexBox'
-import { styled } from '@mui/material/styles'
+import React, { MouseEvent } from 'react'
+
+import { StarRounded } from '@mui/icons-material'
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded'
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded'
+import {
+  Card,
+  Typography,
+  Rating,
+  CardMedia,
+  Box,
+  Stack,
+  Skeleton,
+  Button,
+  Link as MuiLink,
+} from '@mui/material'
+import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
-import Image from 'next/image'
+
+import KiboImage from '@/components/common/KiboImage/KiboImage'
+import Price from '@/components/common/Price/Price'
+import DefaultImage from '@/public/product_placeholder.svg'
 
 export interface ProductCardProps {
-  price: string
-  salePrice: string
+  title?: string
   link: string
-  productCode: string
-  title: string
-  rating: string
-  image: string
-  imageWidth: string
-  imageHeight: string
-  imageLayout: string
-  isInWishlist: boolean
-  isInCart: boolean
+  imageUrl?: string
+  placeholderImageUrl?: string
+  imageAltText?: string
+  price?: string
+  salePrice?: string
+  productCode?: string
+  rating?: number
+  imageHeight?: number
+  imageLayout?: string
+  isInWishlist?: boolean
+  isInCart?: boolean
+  isLoading?: boolean
+  isShopNow?: boolean
+  onAddOrRemoveWishlistItem?: () => void
 }
-const ImageWrap = styled(Box)(() => ({
-  position: 'relative',
-  display: 'inline-block',
-  textAlign: 'center',
-}))
+
+const styles = {
+  cardRoot: {
+    padding: '0.625rem',
+    backgroundColor: 'transparent',
+    width: {
+      xs: 172,
+      md: 202,
+    },
+    boxShadow: 'none',
+    cursor: 'pointer',
+    '&:hover': {
+      boxShadow: '0 2px 16px 4px rgb(40 44 63 / 7%)',
+    },
+  },
+}
+
+const ProductCardSkeleton = () => {
+  return (
+    <Stack spacing={1} sx={styles.cardRoot} data-testid="product-card-skeleton">
+      <Skeleton variant="rectangular" height={150} />
+      <Skeleton variant="rectangular" height={20} />
+      <Skeleton variant="rectangular" width={60} height={20} />
+      <Skeleton variant="rectangular" width={95} height={20} />
+    </Stack>
+  )
+}
 
 const ProductCard = (props: ProductCardProps) => {
-  const { price, title, link, image } = props
-  return (
-    <Card
-      sx={{
-        padding: '10px',
-      }}
-    >
+  const {
+    price,
+    title,
+    link,
+    imageUrl,
+    placeholderImageUrl = DefaultImage,
+    salePrice,
+    rating = 0,
+    imageHeight = 140,
+    imageAltText = 'product-image-alt',
+    isLoading = false,
+    isShopNow = false,
+    isInWishlist = false,
+    onAddOrRemoveWishlistItem,
+  } = props
+
+  const { t } = useTranslation('common')
+
+  const handleAddOrRemoveWishlistItem = (event: MouseEvent<HTMLElement>) => {
+    event.preventDefault()
+    onAddOrRemoveWishlistItem && onAddOrRemoveWishlistItem()
+  }
+
+  if (isLoading) return <ProductCardSkeleton />
+  else
+    return (
       <Box>
-        <Link href={link}>
-          <a>
-            <ImageWrap>
-              <Image src={image} width={260} height={260} />
-            </ImageWrap>
-          </a>
+        <Link href={link} passHref data-testid="product-card-link">
+          <MuiLink href={link} underline="none">
+            <Card sx={styles.cardRoot} data-testid="product-card">
+              <Box textAlign={'right'} width="100%" onClick={handleAddOrRemoveWishlistItem}>
+                {isInWishlist ? (
+                  <FavoriteRoundedIcon sx={{ color: 'red.900' }} />
+                ) : (
+                  <FavoriteBorderRoundedIcon sx={{ color: 'grey.600' }} />
+                )}
+              </Box>
+              <CardMedia
+                sx={{
+                  width: '100%',
+                  height: imageHeight,
+                  position: 'relative',
+                }}
+              >
+                <Box sx={{ zIndex: 1 }}>
+                  <KiboImage
+                    src={imageUrl || placeholderImageUrl}
+                    alt={imageUrl ? imageAltText : 'no-image-alt'}
+                    layout="fill"
+                    objectFit="contain"
+                    data-testid="product-image"
+                    errorimage={placeholderImageUrl}
+                  />
+                </Box>
+              </CardMedia>
+              <Box flexDirection="column" m={2} mt={1}>
+                <Typography variant="body1" gutterBottom color="text.primary">
+                  {title}
+                </Typography>
+                <Price price={price} salePrice={salePrice} variant="body1" />
+                <Rating
+                  name="read-only"
+                  value={rating}
+                  precision={0.5}
+                  readOnly
+                  size="small"
+                  icon={<StarRounded color="primary" data-testid="filled-rating" />}
+                  emptyIcon={<StarRounded data-testid="empty-rating" />}
+                  data-testid="product-rating"
+                />
+              </Box>
+            </Card>
+          </MuiLink>
         </Link>
-      </Box>
-      <FlexBox>
-        <Box flex="1 1 0" minWidth="0px" mr={1}>
-          <Link href={link}>
-            <a>
-              <h3>{title}</h3>
-              <h6>{price}</h6>
-            </a>
-          </Link>
+        <Box>
+          {isShopNow && (
+            <Link href={link} passHref>
+              <MuiLink href={link} underline="none">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ width: '100%', marginTop: '49px' }}
+                >
+                  {t('shop-now')}
+                </Button>
+              </MuiLink>
+            </Link>
+          )}
         </Box>
-      </FlexBox>
-    </Card>
-  )
+      </Box>
+    )
 }
 
 export default ProductCard
