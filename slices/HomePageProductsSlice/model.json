@@ -1,0 +1,66 @@
+{
+  "id": "home_page_products_slice",
+  "type": "SharedSlice",
+  "name": "HomePageProductsSlice",
+  "description": "HomePageProductsSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "HomePageProductsSlice",
+      "primary": {
+        "recently_viewed_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Recently Viewed Title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "recently_viewed_product_codes": {
+          "type": "Text",
+          "config": {
+            "label": "Recently Viewed Product Codes",
+            "placeholder": ""
+          }
+        },
+        "top_sellings_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Top Sellings Title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "top_sellings_product_codes": {
+          "type": "Text",
+          "config": {
+            "label": "Top Sellings Product Codes",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {
+        "recently_viewed_products": {
+          "type": "Text",
+          "config": {
+            "label": "Recently Viewed Products",
+            "placeholder": ""
+          }
+        },
+        "top_sellings_products": {
+          "type": "Text",
+          "config": {
+            "label": "Top Sellings Products",
+            "placeholder": ""
+          }
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

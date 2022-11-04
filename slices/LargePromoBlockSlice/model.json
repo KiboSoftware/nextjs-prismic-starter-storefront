@@ -1,0 +1,87 @@
+{
+  "id": "large_promo_block_slice",
+  "type": "SharedSlice",
+  "name": "LargePromoBlockSlice",
+  "description": "LargePromoBlockSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "LargePromoBlockSlice",
+      "primary": {},
+      "items": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "sub_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Sub Title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "link_title_1": {
+          "type": "Text",
+          "config": {
+            "label": "Link Title 1",
+            "placeholder": ""
+          }
+        },
+        "link_url_1": {
+          "type": "Text",
+          "config": {
+            "label": "Link URL 1",
+            "placeholder": ""
+          }
+        },
+        "link_title_2": {
+          "type": "Text",
+          "config": {
+            "label": "Link Title 2",
+            "placeholder": ""
+          }
+        },
+        "link_url_2": {
+          "type": "Text",
+          "config": {
+            "label": "Link URL 2",
+            "placeholder": ""
+          }
+        },
+        "link_title_3": {
+          "type": "Text",
+          "config": {
+            "label": "Link Title 3",
+            "placeholder": ""
+          }
+        },
+        "link_url_3": {
+          "type": "Text",
+          "config": {
+            "label": "Link URL 3",
+            "placeholder": ""
+          }
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

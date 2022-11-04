@@ -1,0 +1,42 @@
+{
+  "id": "homepage",
+  "label": "Homepage",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Title",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "small_banner_slice": {
+              "type": "SharedSlice"
+            },
+            "hero_carousel_slice": {
+              "type": "SharedSlice"
+            },
+            "large_promo_block_slice": {
+              "type": "SharedSlice"
+            },
+            "small_promo_block_slice": {
+              "type": "SharedSlice"
+            },
+            "home_page_products_slice": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}
