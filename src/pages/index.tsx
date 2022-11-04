@@ -1,37 +1,39 @@
+import { SliceZone } from '@prismicio/react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import nextI18NextConfig from '../../next-i18next.config'
 import { homePageResultMock } from '@/__mocks__/stories'
 import KiboHeroCarousel from '@/components/home/Carousel/KiboHeroCarousel'
+import { createClient } from '../prismicio'
+import { components } from '../slices'
 import { FullWidthLayout } from '@/components/layout'
 import getCategoryTree from '@/lib/api/operations/get-category-tree'
 import type { CategoryTreeResponse, NextPageWithLayout } from '@/lib/types'
 
 import type { GetServerSidePropsContext } from 'next'
-
 interface HomePageProps {
-  carouselItem: any
+  page: any
 }
+
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { locale } = context
+  const { locale, previewData } = context
   const categoriesTree: CategoryTreeResponse = await getCategoryTree()
+
+  const client = createClient({ previewData })
+  const page = await client.getSingle('homepage')
 
   return {
     props: {
+      page,
       categoriesTree,
-      carouselItem: homePageResultMock,
       ...(await serverSideTranslations(locale as string, ['common'], nextI18NextConfig)),
     },
   }
 }
 
 const Home: NextPageWithLayout<HomePageProps> = (props) => {
-  const { carouselItem } = props
-  return (
-    <>
-      <KiboHeroCarousel carouselItem={carouselItem || []}></KiboHeroCarousel>
-    </>
-  )
+  const { page } = props
+  return <SliceZone slices={page.data.slices} components={components} />
 }
 
 Home.getLayout = FullWidthLayout

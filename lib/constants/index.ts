@@ -110,3 +110,7 @@ export const OrderReturnType = {
   REPLACE: 'Replace',
   REFUND: 'Refund',
 }
+
+export enum CMS {
+  PRISMIC = 'prismic',
+}

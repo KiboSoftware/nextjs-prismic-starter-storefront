@@ -1,0 +1,6 @@
+{
+  "_latest": "...",
+  "apiEndpoint": "...",
+  "localSliceSimulatorURL": "http://localhost:3000/slice-simulator",
+  "libraries": ["..."]
+}

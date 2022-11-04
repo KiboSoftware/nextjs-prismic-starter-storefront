@@ -21,6 +21,7 @@ module.exports = {
       'cdn-sb.mozu.com',
       'encrypted-tbn0.gstatic.com',
       'images.ctfassets.net',
+      'images.prismic.io',
     ],
   },
   publicRuntimeConfig: {

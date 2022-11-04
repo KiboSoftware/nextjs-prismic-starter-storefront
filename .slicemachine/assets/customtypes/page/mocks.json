@@ -1,0 +1,23 @@
+{
+  "id": "mock-doc-id",
+  "url": null,
+  "type": "page",
+  "href": null,
+  "tags": [],
+  "first_publication_date": "1970-01-01T00:00:01+0000",
+  "last_publication_date": "1970-01-01T00:00:01+0000",
+  "slugs": [],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "title": [
+      {
+        "type": "paragraph",
+        "text": "Dolore pariatur anim veniam duis do est. Enim laborum nulla enim nostrud fugiat duis proident commodo nulla quis consequat velit elit id ipsum. Anim enim sunt anim aute aliqua occaecat minim voluptate sint consequat duis Lorem in nisi aliquip.",
+        "spans": []
+      }
+    ],
+    "slices": []
+  }
+}

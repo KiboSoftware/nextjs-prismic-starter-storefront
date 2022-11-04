@@ -1,0 +1,42 @@
+{
+  "_cts": {
+    "homepage": {},
+    "page": {}
+  },
+  "slices": {
+    "SmallBannerSlice": {
+      "default": {
+        "primary": {
+          "title": {
+            "config": {
+              "patternType": "HEADING",
+              "blocks": 1
+            }
+          }
+        }
+      }
+    },
+    "HeroCarouselSlice": {
+      "default": {
+        "primary": {}
+      }
+    },
+    "LargePromoBlockSlice": {
+      "default": {
+        "primary": {},
+        "items": {}
+      }
+    },
+    "SmallPromoBlockSlice": {
+      "default": {
+        "primary": {}
+      }
+    },
+    "HomePageProductsSlice": {
+      "default": {
+        "primary": {},
+        "items": {}
+      }
+    }
+  }
+}
