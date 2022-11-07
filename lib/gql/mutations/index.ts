@@ -23,3 +23,8 @@ export { default as deleteCartCouponMutation } from './coupon/deleteCartCoupon'
 export { default as updateOrderCouponMutation } from './coupon/updateOrderCoupon'
 export { default as deleteOrderCouponMutation } from './coupon/deleteOrderCoupon'
 export { default as createReturnItemMutation } from './order-return-items/createReturnItemMutation'
+
+export { default as createCheckoutDestination } from './checkout/create-checkout-destination'
+export { default as updateCheckoutDestination } from './checkout/update-checkout-destination'
+export { default as updateCheckoutItemDestination } from './checkout/update-checkout-item-destination'
+export { default as splitOrderShipment } from './checkout/split-order-shipment'
