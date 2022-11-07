@@ -19,6 +19,7 @@ export * from './queries/useReturnsQueries/useReturnsQueries'
 
 // MultiShip
 export * from './queries/multiShip/useCheckoutQueries/useCheckoutQueries'
+export * from './queries/useCheckoutDestinationQueries/useCheckoutDestinationQueries'
 
 // Custom hooks
 export * from './custom/useDebounce/useDebounce'
@@ -68,3 +69,8 @@ export * from './mutations/useCouponMutations/useDeleteOrderCouponMutation/useDe
 
 export * from './mutations/useProfile/useUpdateUserData/useUpdateUserData'
 export * from './mutations/useProfile/useUpdateUserPassword/useUpdateUserPassword'
+
+//Destination
+export * from './mutations/useCreateCheckoutDestinationMutations/useCreateCheckoutDestinationMutations'
+export * from './mutations/useSplitItemMutations/useSplitItemMutations'
+export * from './mutations/useUpdateCheckoutItemDestinationMutations/useUpdateCheckoutItemDestinationMutations'
