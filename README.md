@@ -1,8 +1,7 @@
-<h2 align="center">KiboCommerce & Next.JS</h2>
+<h2 align="center">KiboCommerce & Next.JS & Prismic</h2>
 
 <p align="center">
-This is a headless ecommerce starter kit for KiboCommerce platform using Next.JS <br>
-Demo: <a href="https://nextjs-storefront-kibo-commerce.vercel.app">https://nextjs-storefront-kibo-commerce.vercel.app</a>
+This is a headless ecommerce starter kit for KiboCommerce platform using Next.JS and Prismic<br>
 </p>
 
 ### Features
@@ -16,13 +15,14 @@ Demo: <a href="https://nextjs-storefront-kibo-commerce.vercel.app">https://nextj
 - KiboCommerce data hooks
 - PWA Ready
 - Omni Channel Capability (Ship to home and Pickup in Store support)
+- Prismic Integration
 
 ## Getting Started
 
 1. Clone this repo
 
 ```bash
-git clone https://github.com/KiboSoftware/nextjs-storefront.git
+git clone https://github.com/KiboSoftware/nextjs-prismic-starter-storefront.git
 ```
 
 2. Change into directory and install dependencies
@@ -42,6 +42,7 @@ cp .env.template .env.local
 
 ```bash
 npm run dev
+npm run slicemachine
 ```
 
 ## Configuration
@@ -83,6 +84,20 @@ npm run test # run unit / integration tests
 - Data Fetching / State Management - [React Query](https://react-query-v3.tanstack.com/overview)
 - Localization - [Next i18Next](https://github.com/i18next/next-i18next)
 
+## Configure Prismic
+
+1. Create account in Prismic
+2. Create repository in Prismic
+3. Open sm.json and change kibo-commerce with your repository name
+   "apiEndpoint": "https://kibo-commerce.prismic.io/api/v2",
+4. Run the slicemachine (npm run slicemachine)
+5. Open http://localhost:9999/
+6. Click on Changes
+7. Click on Push Changes
+8. Open your Prismic repository
+9. Create Homepage and publish the content
+10. Run the application (npm run dev), and verify the changes
+
 ## Contributions
 
-All contributions welcome!
+All contributions welcome! 3.

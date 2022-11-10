@@ -82,7 +82,12 @@ const HeroCarouselSlice = ({ slice }) => {
                 marginBottom: { xs: '40px', md: '0px' },
               }}
             >
-              <PrismicNextImage layout="fill" key={i} field={item.desktop_image} />
+              <PrismicNextImage
+                layout="fill"
+                objectFit="cover"
+                key={i}
+                field={item.desktop_image}
+              />
 
               <CardContent sx={styles.cardContentStyle}>
                 <PrismicRichText field={item.title} key={i} />

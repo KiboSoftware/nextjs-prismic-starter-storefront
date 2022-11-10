@@ -1,5 +1,5 @@
 {
-  "apiEndpoint": "https://sushant.prismic.io/api/v2",
+  "apiEndpoint": "https://kibo-commerce.prismic.io/api/v2",
   "libraries": ["@/slices"],
   "_latest": "0.3.0",
   "framework": "previousNext"
