@@ -72,7 +72,7 @@ const SmallPromoBlockSlice = ({ slice }) => {
           sx={{
             display: 'grid',
             gridTemplateColumns: mobileView ? 'repeat(2, 48%)' : 'repeat(4, 24%)',
-            gap: '30px',
+            gap: '20px',
           }}
         >
           {slice.items.map((item, index) => (
