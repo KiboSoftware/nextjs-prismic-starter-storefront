@@ -86,17 +86,26 @@ npm run test # run unit / integration tests
 
 ## Configure Prismic
 
-1. Create account in Prismic
-2. Create repository in Prismic
-3. Open sm.json and change kibo-commerce with your repository name
+1. Create account/login at Prismic - [Prismic.io](https://prismic.io/dashboard/signup)
+2. Create new repository with Next.js in Prismic dashboard
+3. Open sm.json and change repository 'kibo-commerce' with your repository name at
    "apiEndpoint": "https://kibo-commerce.prismic.io/api/v2",
-4. Run the slicemachine (npm run slicemachine)
-5. Open http://localhost:9999/
-6. Click on Changes
-7. Click on Push Changes
-8. Open your Prismic repository
-9. Create Homepage and publish the content
-10. Run the application (npm run dev), and verify the changes
+4. Run the slicemachine
+   ```bash
+   npm run slicemachine
+   ```
+5. Open
+   ```bash
+   http://localhost:9999/
+   ```
+6. Click on 'Changes' tab in slicemachine
+7. Click on 'Push Changes' button in slicemachine to push it into your Prismic repository
+8. Go to your Prismic repository
+9. Under 'work' tab, click on 'Create new' button
+10. Select 'Homepage' (pushed through slicemachine)
+11. Create Homepage slices
+12. Save the contents and publish it
+13. Run the application (npm run dev), and verify the changes
 
 ## Contributions
 
