@@ -41,6 +41,10 @@ export * from './mutations/useWishlistMutations/useCreateWishlistMutation/useCre
 export * from './mutations/useUpdateCheckoutMutations/useCreateCheckoutPaymentMethod/useCreateCheckoutPaymentMethodMutation'
 export * from './mutations/useUpdateCheckoutMutations/useUpdateCheckoutBillingInfo/useUpdateCheckoutBillingInfoMutation'
 export * from './mutations/useUpdateCheckoutMutations/useUpdateOrderPaymentActionMutation/useUpdateOrderPaymentActionMutation'
+
+//multiship hooks
+export * from './mutations/multiShip/useCreateCheckoutPaymentActionMutations/useCreateCheckoutPaymentActionMutations'
+
 // cards
 export * from './mutations/useCustomerCardsMutations/useCreateCustomerCardsMutation'
 export * from './mutations/useCustomerCardsMutations/useUpdateCustomerCardsMutation'
