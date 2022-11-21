@@ -4,6 +4,7 @@ import { orderMock, locationInventoryCollectionMock, shippingRateMock } from '..
 import { cartItemMock } from '../stories/cartItemMock'
 import { cartCouponMock, cartMock } from '../stories/cartMock'
 import { categoryTreeDataMock } from '../stories/categoryTreeDataMock'
+import { checkoutMock } from '../stories/checkoutMock'
 import { configuredProductMock } from '../stories/configuredProductMock'
 import { createCustomerAccountCardMock } from '../stories/createCustomerAccountCardMock'
 import { createOrderPaymentActionMock } from '../stories/createOrderPaymentActionMock'
@@ -65,6 +66,15 @@ export const checkoutHandlers = [
     return res(
       ctx.data({
         createOrderPaymentPaymentAction: createOrderPaymentActionMock.createOrderPaymentAction,
+      })
+    )
+  }),
+
+  // Multi Ship Payment
+  graphql.mutation('checkoutPaymentAction', (_req, res, ctx) => {
+    return res(
+      ctx.data({
+        createCheckoutPaymentAction: checkoutMock,
       })
     )
   }),
