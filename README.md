@@ -109,4 +109,4 @@ npm run test # run unit / integration tests
 
 ## Contributions
 
-All contributions welcome! 3.
+All contributions welcome!
