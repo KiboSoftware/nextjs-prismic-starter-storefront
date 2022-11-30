@@ -78,6 +78,7 @@ export * from './mutations/useProfile/useUpdateUserPassword/useUpdateUserPasswor
 
 // MultiShip
 export * from './mutations/multiShip/useCreateCheckoutActionMutation/useCreateCheckoutActionMutation'
-//Destination
-export * from './mutations/useCreateCheckoutDestinationMutations/useCreateCheckoutDestinationMutations'
-export * from './mutations/useUpdateCheckoutItemDestinationMutations/useUpdateCheckoutItemDestinationMutations'
+export * from './mutations/multiShip/useUpdateCheckoutPersonalInfoMutation/useUpdateCheckoutPersonalInfoMutation'
+export * from './mutations/multiShip/useUpdateCheckoutShippingInfoMutation/useUpdateCheckoutShippingInfoMutation'
+export * from './mutations/multiShip/useCreateCheckoutFromCartMutation/useCreateCheckoutFromCartMutation'
+export * from './mutations/multiShip/useCreateCheckoutShippingMethodMutation/useCreateCheckoutShippingMethodMutation'
