@@ -4,10 +4,10 @@ import { makeGraphQLClient } from '@/lib/gql/client'
 import { getShippingRates } from '@/lib/gql/queries'
 import { shippingMethodKeys } from '@/lib/react-query/queryKeys'
 
-import type { ShippingRate } from '@/lib/gql/types'
+import type { CrShippingRate } from '@/lib/gql/types'
 
 export interface UseShippingMethodsResponse {
-  data: ShippingRate[]
+  data: CrShippingRate[]
   isLoading: boolean
   isSuccess: boolean
 }

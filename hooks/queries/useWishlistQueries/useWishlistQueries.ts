@@ -4,16 +4,16 @@ import { makeGraphQLClient } from '@/lib/gql/client'
 import { getWishlistQuery } from '@/lib/gql/queries'
 import { wishlistKeys } from '@/lib/react-query/queryKeys'
 
-import type { Wishlist } from '@/lib/gql/types'
+import type { CrWishlist } from '@/lib/gql/types'
 
 export interface UseWishlistResponse {
-  data?: Wishlist
+  data?: CrWishlist
   isLoading: boolean
   isSuccess: boolean
   isFetching: boolean
 }
 
-const getWishlists = async (): Promise<Wishlist> => {
+const getWishlists = async (): Promise<CrWishlist> => {
   const client = makeGraphQLClient()
   const response = await client.request({
     document: getWishlistQuery,
