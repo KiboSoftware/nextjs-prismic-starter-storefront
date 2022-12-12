@@ -7,7 +7,7 @@ import { cartKeys } from '@/lib/react-query/queryKeys'
 import type { CrCart } from '@/lib/gql/types'
 
 export interface UseCartType {
-  data: Cart
+  data: CrCart
   isLoading: boolean
   isSuccess: boolean
 }
