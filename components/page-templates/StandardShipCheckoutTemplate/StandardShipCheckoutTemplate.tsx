@@ -13,8 +13,9 @@ import {
   useDeleteOrderCouponMutation,
   useUpdateCheckoutPersonalInfoMutation,
   PersonalInfo,
+  useCreateOrderMutation,
 } from '@/hooks'
-import { userGetters } from '@/lib/getters'
+import { orderGetters, userGetters } from '@/lib/getters'
 
 import type { CommonCheckout } from '../CheckoutUITemplate/CheckoutUITemplate'
 import type { CustomerContact, CrOrder, CrOrderInput, Checkout } from '@/lib/gql/types'
@@ -38,10 +39,11 @@ const StandardShipCheckoutTemplate = (props: CheckoutProps) => {
   const { data: savedUserAddressData, isSuccess } = useCustomerContactsQueries(user?.id as number)
   const updateOrderCoupon = useUpdateOrderCouponMutation()
   const deleteOrderCoupon = useDeleteOrderCouponMutation()
+  const createOrder = useCreateOrderMutation()
 
   const { setStepBack } = useCheckoutStepContext()
 
-  const handleBack = () => setStepBack()
+  // const handleBack = () => setStepBack()
 
   const handleApplyCouponCode = async (couponCode: string) => {
     try {
@@ -87,6 +89,20 @@ const StandardShipCheckoutTemplate = (props: CheckoutProps) => {
     }
     await updateStandardCheckoutPersonalInfo.mutateAsync(personalInfo)
   }
+  const orderDetails = orderGetters.getCheckoutDetails(checkout as CrOrder)
+
+  const personalDetails = {
+    ...orderDetails.personalDetails,
+    showAccountFields: false,
+    password: '',
+  }
+
+  const handleCreateOrder = (checkout: CrOrder) => {
+    console.log('handleCreateOrder called standard :')
+    createOrder.mutateAsync(checkout)
+  }
+
+  const { shipItems, pickupItems } = orderGetters.getCheckoutDetails(checkout as CrOrder)
 
   return (
     <>
@@ -107,7 +123,15 @@ const StandardShipCheckoutTemplate = (props: CheckoutProps) => {
           />
         )}
         <PaymentStep checkout={checkout} />
-        <ReviewStep checkout={checkout as CrOrder} onBackButtonClick={handleBack} />
+        <ReviewStep
+          checkout={checkout as CommonCheckout<CrOrder, Checkout>}
+          shipItems={shipItems}
+          pickupItems={pickupItems}
+          personalDetails={personalDetails}
+          orderSummaryProps={orderDetails?.orderSummary}
+          onCreateOrder={handleCreateOrder}
+          isMultiShipEnabled={true}
+        />
       </CheckoutUITemplate>
     </>
   )
