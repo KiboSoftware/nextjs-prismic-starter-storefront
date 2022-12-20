@@ -20,6 +20,9 @@ export * from './queries/useReturnsQueries/useReturnsQueries'
 // MultiShip
 export * from './queries/multiShip/useCheckoutQueries/useCheckoutQueries'
 
+//Subscription
+export * from './queries/subscription/useSubscriptionsQueries/useSubscriptionsQueries'
+
 // Custom hooks
 export * from './custom/useDebounce/useDebounce'
 export * from './custom/useUpdateRoutes/useUpdateRoutes'
