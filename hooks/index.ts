@@ -22,6 +22,7 @@ export * from './queries/multiShip/useCheckoutQueries/useCheckoutQueries'
 
 //Subscription
 export * from './queries/subscription/useSubscriptionsQueries/useSubscriptionsQueries'
+export * from './mutations/subscription/useOrderSubscriptionNowMutation'
 
 // Custom hooks
 export * from './custom/useDebounce/useDebounce'

@@ -287,5 +287,7 @@
   "status": "Status",
   "shipment-frequency": "Shipment Frequency",
   "estimated-next-arrival-date": "Estimated Arrival for next delivery",
-  "no-subscription-message": "You do not have any subscriptions"
+  "no-subscription-message": "You do not have any subscriptions",
+  "place-an-order-of-this-subscription-now": "Place an order of this subscription now?",
+  "confirm": "Confirm"
 }
