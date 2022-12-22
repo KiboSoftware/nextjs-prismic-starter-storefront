@@ -76,4 +76,4 @@ export * from './mutations/useProfile/useUpdateUserPassword/useUpdateUserPasswor
 export * from './mutations/multiShip/useCreateCheckoutActionMutation/useCreateCheckoutActionMutation'
 
 //subscription
-export * from './mutations/subscription/useSkipNextSubscription/useSkipNextSubscriptionMutation'
+export * from './mutations/useSubscription/useSkipNextSubscription/useSkipNextSubscriptionMutation'
