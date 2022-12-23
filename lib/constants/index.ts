@@ -110,3 +110,5 @@ export const OrderReturnType = {
   REPLACE: 'Replace',
   REFUND: 'Refund',
 }
+
+export const PersonalInfoUpdateMode = { APPLYTOORIGINAL: 'ApplyToOriginal' }
