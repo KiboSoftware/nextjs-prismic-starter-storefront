@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { DetailsStep, MultiShippingStep } from '@/components/checkout'
+import { DetailsStep, MultiShippingStep, PaymentStep } from '@/components/checkout'
 import { CheckoutUITemplate } from '@/components/page-templates'
 import { useAuthContext } from '@/context'
 import {
@@ -15,6 +15,8 @@ import {
   useCreateCheckoutDestinationMutations,
   useCheckoutShippingMethodsQuery,
   useCreateCheckoutShippingMethodMutation,
+  useUpdateMultiShipCheckoutPaymentActionMutation,
+  useCreateMultiShipCheckoutPaymentActionMutation,
 } from '@/hooks'
 import { userGetters } from '@/lib/getters'
 import type { PersonalDetails } from '@/lib/types'
@@ -25,6 +27,7 @@ import type {
   CheckoutGroupRates,
   CrShippingRate,
   Maybe,
+  PaymentActionInput,
 } from '@/lib/gql/types'
 
 interface MultiShipCheckoutProps {
@@ -129,6 +132,29 @@ const MultiShipCheckoutTemplate = (props: MultiShipCheckoutProps) => {
     }
   }
 
+  // Payment Step
+  const updateMultiShipCheckoutPaymentAction = useUpdateMultiShipCheckoutPaymentActionMutation()
+  const createMultiShipCheckoutPaymentAction = useCreateMultiShipCheckoutPaymentActionMutation()
+
+  const handleVoidPayment = async (
+    id: string,
+    paymentId: string,
+    paymentAction: PaymentActionInput
+  ) => {
+    await updateMultiShipCheckoutPaymentAction.mutateAsync({
+      checkoutId: id as string,
+      paymentId,
+      paymentAction,
+    })
+  }
+
+  const handleAddPayment = async (id: string, paymentAction: PaymentActionInput) => {
+    await createMultiShipCheckoutPaymentAction.mutateAsync({
+      checkoutId: id,
+      paymentAction,
+    })
+  }
+
   return (
     <>
       <CheckoutUITemplate
@@ -151,8 +177,12 @@ const MultiShipCheckoutTemplate = (props: MultiShipCheckoutProps) => {
           onUpdateCheckoutShippingMethod={updateCheckoutShippingMethod}
         />
         {/* @to-do Use below steps for future development */}
-        {/* <PaymentStep checkout={checkout} {...paymentStepParams} />
-              <ReviewStep checkout={checkout as Checkout} onBackButtonClick={handleBack} /> */}
+        <PaymentStep
+          checkout={checkout as Checkout}
+          onVoidPayment={handleVoidPayment}
+          onAddPayment={handleAddPayment}
+        />
+        {/* <ReviewStep checkout={checkout as Checkout} onBackButtonClick={handleBack} /> */}
       </CheckoutUITemplate>
     </>
   )

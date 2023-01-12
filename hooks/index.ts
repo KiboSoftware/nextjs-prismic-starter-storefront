@@ -51,7 +51,6 @@ export * from './mutations/useUpdateCheckoutMutations/useUpdateOrderPaymentActio
 export * from './mutations/useCreateOrderReturnItemsMutation/useCreateOrderReturnItemsMutation'
 
 //multiship hooks
-export * from './mutations/multiShip/useCreateCheckoutPaymentActionMutations/useCreateCheckoutPaymentActionMutations'
 
 // cards
 export * from './mutations/useCustomerCardsMutations/useCreateCustomerCardsMutation'
@@ -89,3 +88,6 @@ export * from './queries/subscription/useSubscriptionsQueries/useSubscriptionsQu
 export * from './mutations/useSubscription/useOrderSubscriptionNow/useOrderSubscriptionNowMutation'
 export * from './mutations/useSubscription/useEditSubscriptionFrequencyMutation/useEditSubscriptionFrequencyMutation'
 export * from './mutations/useSubscription/useSkipNextSubscription/useSkipNextSubscriptionMutation'
+
+export * from './mutations/multiShip/useCreateCheckoutPaymentActionMutation/useCreateCheckoutPaymentActionMutation'
+export * from './mutations/multiShip/useUpdateCheckoutPaymentActionMutation/useUpdateCheckoutPaymentActionMutation'
