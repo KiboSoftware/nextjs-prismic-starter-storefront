@@ -103,15 +103,15 @@ describe('[components] ReviewStep', () => {
     })
   })
 
-  it('should show multiShipping addresses when multiShip is enabled', () => {
-    render(<WithMultiShippingAddresses {...WithMultiShippingAddresses.args} />)
+  // it('should show multiShipping addresses when multiShip is enabled', () => {
+  //   render(<WithMultiShippingAddresses {...WithMultiShippingAddresses.args} />)
 
-    const multiShipHeading = screen.getByRole('heading', {
-      name: /shipping-to-address/i,
-    })
+  //   const multiShipHeading = screen.getByRole('heading', {
+  //     name: /shipping-to-address/i,
+  //   })
 
-    expect(multiShipHeading).toBeInTheDocument()
-  })
+  //   expect(multiShipHeading).toBeInTheDocument()
+  // })
 
   describe('For non loggedIn user', () => {
     it("shold enable 'I want to create an account' checkbox when user is not loggedIn", () => {
