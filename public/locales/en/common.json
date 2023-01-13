@@ -306,5 +306,6 @@
   "place-an-order-of-this-subscription-now": "Place an order of this subscription now?",
   "skip-next-subscription-confirmation": "Are you sure you want to skip next subscription order?",
   "next-order-skip": "Skipped next subscription order. Next order will be placed on ",
-  "yes": "Yes"
+  "yes": "Yes",
+  "subscription-frequency": "Subscription frequency"
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { StarRounded } from '@mui/icons-material'
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded'
@@ -13,11 +13,18 @@ import {
   Link as MuiLink,
   styled,
   Theme,
+  MenuItem,
 } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 
-import { FulfillmentOptions, Price, QuantitySelector } from '@/components/common'
+import {
+  FulfillmentOptions,
+  KiboRadio,
+  KiboSelect,
+  Price,
+  QuantitySelector,
+} from '@/components/common'
 import { KiboBreadcrumbs, ImageGallery } from '@/components/core'
 import { AddToCartDialog, StoreLocatorDialog } from '@/components/dialogs'
 import {
@@ -37,7 +44,11 @@ import {
   useWishlist,
   useProductLocationInventoryQueries,
 } from '@/hooks'
-import { FulfillmentOptions as FulfillmentOptionsConstant } from '@/lib/constants'
+import {
+  FulfillmentOptions as FulfillmentOptionsConstant,
+  ProductAttribute,
+  PurchaseTypes,
+} from '@/lib/constants'
 import { productGetters, wishlistGetters } from '@/lib/getters'
 import { uiHelpers } from '@/lib/helpers'
 import type { ProductCustom, BreadCrumb, PriceRange, LocationCustom } from '@/lib/types'
@@ -141,6 +152,26 @@ const ProductDetailTemplate = (props: ProductDetailTemplateProps) => {
     productCode,
     variationProductCode,
   })
+
+  const [purchaseType, setPurchaseType] = useState<string>(PurchaseTypes.ONETIMEPURCHASE)
+  const [selectedFrequency, setSelectedFrequency] = useState<string>('')
+
+  const isSubscriptionModeAvailable = product?.properties?.some(
+    (property) => property?.attributeFQN === ProductAttribute.SUBSCRIPTION_Mode
+  )
+
+  const purchaseTypeRadioOptions = [
+    {
+      value: PurchaseTypes.SUBSCRIPTION,
+      name: PurchaseTypes.SUBSCRIPTION,
+      label: <Typography variant="body2">{PurchaseTypes.SUBSCRIPTION}</Typography>,
+    },
+    {
+      value: PurchaseTypes.ONETIMEPURCHASE,
+      name: PurchaseTypes.ONETIMEPURCHASE,
+      label: <Typography variant="body2">{PurchaseTypes.ONETIMEPURCHASE}</Typography>,
+    },
+  ]
 
   // methods
   const handleAddToCart = async () => {
@@ -247,6 +278,13 @@ const ProductDetailTemplate = (props: ProductDetailTemplateProps) => {
     }
   }
 
+  const handlePurchaseTypeSelection = (option: string) => {
+    setPurchaseType(option)
+  }
+
+  const handleFrequencyChange = async (name: string, value: string) => setSelectedFrequency(value)
+
+  console.log(product)
   return (
     <Grid container>
       {!isQuickViewModal && (
@@ -370,14 +408,41 @@ const ProductDetailTemplate = (props: ProductDetailTemplateProps) => {
             onDecrease={() => setQuantity((prevQuantity: number) => Number(prevQuantity) - 1)}
           />
         </Box>
-
+        {isSubscriptionModeAvailable && (
+          <Box paddingY={1}>
+            <KiboRadio
+              radioOptions={purchaseTypeRadioOptions}
+              selected={purchaseType}
+              onChange={handlePurchaseTypeSelection}
+            />
+          </Box>
+        )}
         <Box paddingY={1}>
-          <FulfillmentOptions
-            fulfillmentOptions={fulfillmentOptions}
-            selected={selectedFulfillmentOption?.method}
-            onFulfillmentOptionChange={(value: string) => handleFulfillmentOptionChange(value)}
-            onStoreSetOrUpdate={() => handleProductPickupLocation()}
-          />
+          {purchaseType === PurchaseTypes.SUBSCRIPTION && (
+            <KiboSelect
+              name="selectSubscriptionFrequency"
+              onChange={handleFrequencyChange}
+              placeholder={t('select-subscription-frequency')}
+              value={selectedFrequency}
+              label={t('subscription-frequency')}
+            >
+              {['sds', 'sdfs']?.map((value) => {
+                return (
+                  <MenuItem key={value} value={`${value}`}>
+                    {`${value}`}
+                  </MenuItem>
+                )
+              })}
+            </KiboSelect>
+          )}
+          {purchaseType === PurchaseTypes.ONETIMEPURCHASE && (
+            <FulfillmentOptions
+              fulfillmentOptions={fulfillmentOptions}
+              selected={selectedFulfillmentOption?.method}
+              onFulfillmentOptionChange={(value: string) => handleFulfillmentOptionChange(value)}
+              onStoreSetOrUpdate={() => handleProductPickupLocation()}
+            />
+          )}
         </Box>
 
         <Box pt={2} display="flex" sx={{ justifyContent: 'space-between' }}>
