@@ -1,6 +1,7 @@
 import { format } from 'date-fns'
 
 import { ProductAttribute } from '../constants'
+import type { ProductCustom } from '@/lib/types'
 
 import type { SbProduct, SbProductProperty, Subscription } from '@/lib/gql/types'
 
@@ -36,12 +37,35 @@ const getSubscriptionDetails = (subscription: any) => {
   }
 }
 
-const getFrequencyValues = (product: SbProduct | null | undefined) => {
+const getFrequencyValues = (product: SbProduct | ProductCustom | null | undefined) => {
   if (!product) return
 
-  return product?.properties?.find(
-    (property) => property?.attributeFQN === ProductAttribute.SUBSCRIPTION_FREQUENCY
-  )?.values
+  return (
+    (product?.properties as SbProductProperty[])?.find(
+      (property) => property?.attributeFQN === ProductAttribute.SUBSCRIPTION_FREQUENCY
+    )?.values || []
+  )
+}
+
+const isSubscriptionModeAvailable = (product: ProductCustom | null | undefined) => {
+  if (!product) return false
+
+  return product?.properties?.some(
+    (property) => property?.attributeFQN === ProductAttribute.SUBSCRIPTION_Mode
+  )
+}
+
+const getSubscriptionFrequencyUnit = (selectedFrequency: string) => {
+  const [value, unit] = selectedFrequency.split(' ')
+
+  // API accepts unit as singular ex. day or month
+  const isUnitPlural = unit.charAt(unit.length - 1).toLowerCase() === 's'
+  const unitSingular = isUnitPlural ? unit.slice(0, unit.length - 1) : unit
+
+  return {
+    value: +value,
+    unit: unitSingular,
+  }
 }
 
 export const subscriptionGetters = {
@@ -53,4 +77,6 @@ export const subscriptionGetters = {
   getSubscriptionFrequency,
   getSubscriptionDetails,
   getFrequencyValues,
+  isSubscriptionModeAvailable,
+  getSubscriptionFrequencyUnit,
 }

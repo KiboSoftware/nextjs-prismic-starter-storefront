@@ -7,6 +7,7 @@ import { KiboSelect, KiboDialog } from '@/components/common'
 import { useModalContext } from '@/context/ModalContext'
 import { useSnackbarContext } from '@/context/SnackbarContext/SnackbarContext'
 import { useEditSubscriptionFrequencyMutation } from '@/hooks'
+import { subscriptionGetters } from '@/lib/getters'
 
 import type { SbProductPropertyValue } from '@/lib/gql/types'
 
@@ -26,18 +27,9 @@ const EditSubscriptionFrequencyDialog = (props: EditSubscriptionFrequencyDialogP
   const { showSnackbar } = useSnackbarContext()
 
   const updateFrequency = async () => {
-    const [value, unit] = selectedFrequency.split(' ')
-
-    // API accepts unit as singluar ex. day or month
-    const isUnitPlural = unit.charAt(unit.length - 1).toLowerCase() === 's'
-    const unitSingular = isUnitPlural ? unit.slice(0, unit.length - 1) : unit
-
     const params = {
       subscriptionId,
-      frequencyInput: {
-        value: +value,
-        unit: unitSingular,
-      },
+      frequencyInput: subscriptionGetters.getSubscriptionFrequencyUnit(selectedFrequency),
     }
 
     await editSubscriptionFrequency.mutateAsync(params)
