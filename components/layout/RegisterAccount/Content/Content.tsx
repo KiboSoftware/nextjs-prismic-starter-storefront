@@ -21,7 +21,6 @@ export interface RegisterAccountInputData {
 interface ContentProps {
   setAutoFocus?: boolean
   onRegisterNow: (formData: RegisterAccountInputData) => void
-  errorMessage: string
 }
 
 const styles = {
@@ -34,7 +33,7 @@ const styles = {
 }
 
 const Content = (props: ContentProps) => {
-  const { setAutoFocus = true, onRegisterNow, errorMessage } = props
+  const { setAutoFocus = true, onRegisterNow } = props
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const { t } = useTranslation('common')
 
@@ -156,11 +155,6 @@ const Content = (props: ContentProps) => {
           <Box sx={{ marginBottom: '2rem' }}>
             <PasswordValidation password={userEnteredPassword} />
           </Box>
-        )}
-        {errorMessage && (
-          <Typography color="error" justifyContent="center" display="flex">
-            {errorMessage}
-          </Typography>
         )}
 
         <Button

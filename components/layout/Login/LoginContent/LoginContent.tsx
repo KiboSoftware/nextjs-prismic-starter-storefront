@@ -32,7 +32,6 @@ export type LoginData = {
 export interface LoginContentProps {
   onLogin: (data: LoginData) => void
   onForgotPasswordClick: () => void
-  errorMessage: string
 }
 
 const styles = {
@@ -45,7 +44,7 @@ const styles = {
 }
 
 const LoginContent = (props: LoginContentProps) => {
-  const { onLogin, onForgotPasswordClick, errorMessage } = props
+  const { onLogin, onForgotPasswordClick } = props
 
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [isRememberMe, setIsRememberMe] = useState<boolean>(false)
@@ -152,11 +151,6 @@ const LoginContent = (props: LoginContentProps) => {
           label={t('remember-me')}
           labelPlacement="end"
         />
-        {errorMessage && (
-          <Typography color="error" justifyContent="center" display="flex">
-            {errorMessage}
-          </Typography>
-        )}
         <Button
           variant="contained"
           color="primary"

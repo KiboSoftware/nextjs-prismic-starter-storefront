@@ -59,7 +59,7 @@ const DetailsStep = <T extends CrOrder | Checkout>(props: DetailsProps<T>) => {
 
   const { t } = useTranslation('common')
 
-  const { isAuthenticated, setAuthError } = useAuthContext()
+  const { isAuthenticated } = useAuthContext()
   const { showModal } = useModalContext()
   const {
     stepStatus,
@@ -74,7 +74,6 @@ const DetailsStep = <T extends CrOrder | Checkout>(props: DetailsProps<T>) => {
   }
 
   const openLoginModal = () => {
-    setAuthError('')
     if (!isAuthenticated) showModal({ Component: LoginDialog })
   }
 
