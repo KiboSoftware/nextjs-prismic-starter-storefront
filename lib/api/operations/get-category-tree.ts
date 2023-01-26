@@ -14,7 +14,14 @@ export default async function getCategoryTree() {
     if (cachedItems) return cachedItems
 
     if (!cachedItems) {
-      const response = await fetcher({ query: getCategoryTreeQuery, variables: {} }, null)
+      // const response = await fetcher({ query: getCategoryTreeQuery, variables: {} }, null)
+      const response: any = {
+        data: {
+          categoriesTree: {
+            items: [],
+          },
+        },
+      }
       const items = response?.data?.categoriesTree?.items
       if (items.length) {
         cache.set(cacheKey, items, cacheTimeOut)

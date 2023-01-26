@@ -6,18 +6,7 @@ import { CategorySearchParams } from '@/lib/types'
 export default async function search(searchParams: CategorySearchParams) {
   try {
     const variables = buildProductSearchParams(searchParams)
-    // return await fetcher({ query: searchProductsQuery, variables }, null)
-    return {
-      data: {
-        products: {
-          items: [
-            {
-              productCode: '123',
-            },
-          ],
-        },
-      },
-    }
+    return await fetcher({ query: searchProductsQuery, variables }, null)
   } catch (error) {
     console.error(error)
   }

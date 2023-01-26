@@ -14,7 +14,9 @@ interface HomePageProps {
 }
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { locale } = context
+  console.time('getCategoryTree')
   const categoriesTree: CategoryTreeResponse = await getCategoryTree()
+  console.timeEnd('getCategoryTree')
 
   return {
     props: {
