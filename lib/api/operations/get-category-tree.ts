@@ -9,27 +9,27 @@ const cacheKey = serverRuntimeConfig.cacheKey
 const cacheTimeOut = serverRuntimeConfig.cacheTimeOut
 
 export default async function getCategoryTree() {
-  try {
-    const cachedItems = cache.get(cacheKey)
-    if (cachedItems) return cachedItems
+  // try {
+  // const cachedItems = cache.get(cacheKey)
+  // if (cachedItems) return cachedItems
 
-    if (!cachedItems) {
-      // const response = await fetcher({ query: getCategoryTreeQuery, variables: {} }, null)
-      const response: any = {
-        data: {
-          categoriesTree: {
-            items: [],
-          },
-        },
-      }
-      const items = response?.data?.categoriesTree?.items
-      if (items.length) {
-        cache.set(cacheKey, items, cacheTimeOut)
-      }
-
-      return items
-    }
-  } catch (error) {
-    console.log(error)
+  // if (!cachedItems) {
+  // const response = await fetcher({ query: getCategoryTreeQuery, variables: {} }, null)
+  const response: any = {
+    data: {
+      categoriesTree: {
+        items: [],
+      },
+    },
   }
+  const items = response?.data?.categoriesTree?.items
+  if (items.length) {
+    cache.set(cacheKey, items, cacheTimeOut)
+  }
+
+  return items
+  // }
+  // } catch (error) {
+  //   console.log(error)
+  // }
 }
