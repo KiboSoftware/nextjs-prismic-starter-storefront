@@ -91,6 +91,7 @@ export * from './mutations/useSubscription/useEditSubscriptionFrequencyMutation/
 export * from './mutations/useSubscription/useSkipNextSubscription/useSkipNextSubscriptionMutation'
 export * from './mutations/useSubscription/useUpdateSubscriptionNextOrderDateMutation/useUpdateSubscriptionNextOrderDateMutation'
 export * from './mutations/useSubscription/useUpdateSubscriptionFulfillmentInfoMutation/updateSubscriptionFulfillmentInfoMutation'
+export * from './mutations/useSubscription/useDeleteSubscriptionMutation/useDeleteSubscriptionMutation'
 
 export * from './mutations/multiShip/useCreateCheckoutPaymentActionMutation/useCreateCheckoutPaymentActionMutation'
 export * from './mutations/multiShip/useUpdateCheckoutPaymentActionMutation/useUpdateCheckoutPaymentActionMutation'

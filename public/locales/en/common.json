@@ -306,6 +306,7 @@
   "subscription-frequency-updated-successfully": "Subscription frequency updated successfully",
   "place-an-order-of-this-subscription-now": "Place an order of this subscription now?",
   "skip-next-subscription-confirmation": "Are you sure you want to skip next subscription order?",
+  "cancel-subscription-confirmation": "Are you sure you want to cancel this subscription ?",
   "next-order-skip": "Skipped next subscription order. Next order will be placed on ",
   "yes": "Yes",
   "select-next-order-date": "Select next order date",
@@ -316,5 +317,6 @@
   "order-date-must-be-valid": "Order date must be valid",
   "address-updated-successfully": "Address updated successfully",
   "item-ordered-successfully": "Item ordered successfully",
+  "subscription-cancelled-successfully": "Your subscription item has been cancelled.",
   "select-shipping-address": "Select shipping address"
 }
