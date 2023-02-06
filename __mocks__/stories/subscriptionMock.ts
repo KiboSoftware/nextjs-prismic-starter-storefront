@@ -1,4 +1,4 @@
-import { Subscription } from '@/lib/gql/types'
+import type { SubscriptionReason } from '@/lib/gql/types'
 
 export const subscriptionMock = {
   subscription: {
@@ -39,5 +39,14 @@ export const subscriptionMock = {
       value: 1,
     },
     nextOrderDate: 1683072000000,
+  },
+}
+
+export const deleteSubscriptionMock: { subscription: SubscriptionReason } = {
+  subscription: {
+    actionName: 'cancel',
+    description: 'cancel',
+    reasonCode: 'cancel',
+    moreInfo: 'cancel',
   },
 }

@@ -22,7 +22,11 @@ import {
   useDeleteSubscriptionMutation,
 } from '@/hooks'
 import { subscriptionGetters, productGetters } from '@/lib/getters'
-import { uiHelpers, buildSubscriptionFulfillmentInfoParams } from '@/lib/helpers'
+import {
+  uiHelpers,
+  buildSubscriptionFulfillmentInfoParams,
+  buildSubscriptionParams,
+} from '@/lib/helpers'
 import type { Address, FulfillmentInfo } from '@/lib/types'
 
 import type { CrProduct, Subscription } from '@/lib/gql/types'
@@ -150,17 +154,7 @@ const SubscriptionItem = (props: SubscriptionItemProps) => {
 
   // Cancel An Item
   const confirmDeleteSubscription = async (subscriptionId: string, subscriptionItemId: string) => {
-    const params = {
-      subscriptionId: subscriptionId,
-      subscriptionItemId: subscriptionItemId,
-      subscriptionReasonInput: {
-        actionName: 'cancel',
-        reasonCode: 'cancel',
-        description: 'cancel',
-        moreInfo: 'cancel',
-      },
-    }
-
+    const params = buildSubscriptionParams(subscriptionId, subscriptionItemId)
     await deleteSubscription.mutateAsync(params)
     closeModal()
     showSnackbar(t('subscription-cancelled-successfully'), 'success')
