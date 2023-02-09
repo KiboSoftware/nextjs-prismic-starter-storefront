@@ -80,7 +80,7 @@ module.exports = {
     defaultWishlistName: DEFAULT_WISHLIST_NAME,
     pciHost: process.env.KIBO_PCI_HOST,
     apiHost: process.env.KIBO_API_HOST,
-    isMultiShipEnabled: true,
+    isMultiShipEnabled: false,
     shipOptions: [
       {
         value: 'ShipToHome',
@@ -104,6 +104,6 @@ module.exports = {
     pageSize: 100,
     cacheKey: 'categoryTree',
     cacheTimeOut: 10000,
-    isMultiShipEnabled: true,
+    isMultiShipEnabled: false,
   },
 }
