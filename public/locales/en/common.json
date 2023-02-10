@@ -318,6 +318,7 @@
   "item-ordered-successfully": "Item ordered successfully",
   "select-shipping-address": "Select shipping address",
   "subscription-frequency": "Subscription frequency",
-
-  "fulfillment-options": "Fulfillment Options:"
+  "fulfillment-options": "Fulfillment Options:",
+  "card-ending-in": "Card ",
+  "edit-billing-address": "Edit billing address"
 }
